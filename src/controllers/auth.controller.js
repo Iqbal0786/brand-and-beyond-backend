@@ -8,7 +8,7 @@ const newToken=(user)=>{
 const register= async (req,res)=>{
     try {
         // we wil try to find user with the email id 
-         let user= await User.findOne({email:req.body.email}).lean().exec();
+         let user= await User.findOne({email:req.body.email} ).lean().exec();
       //  if the  user is found then it is an error 
       // it means this email has already registered with the previous user
          if(user){
@@ -30,7 +30,7 @@ const register= async (req,res)=>{
 const login= async(req,res)=>{
     try {
         //  first we will find the user by email id
-        const user= await User.findOne({email:req.body.email});
+        const user= await User.findOne({email:req.body.email},'email roles').exec();
 
         // if user is not found then it's a error
         if(!user){
