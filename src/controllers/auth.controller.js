@@ -30,7 +30,7 @@ const register= async (req,res)=>{
 const login= async(req,res)=>{
     try {
         //  first we will find the user by email id
-        const user= await User.findOne({email:req.body.email},'email roles').exec();
+        const user= await User.findOne({email:req.body.email}).exec();
 
         // if user is not found then it's a error
         if(!user){
