@@ -1,7 +1,9 @@
 const express= require("express");
+const authenticate = require("../middlewares/authenticate");
+const authorization = require("../middlewares/authorization");
 const router= express.Router();
 const User= require("../models/user.model");
-router.get("",async(req,res)=>{
+router.get("", authenticate,authorization(["admin"]), async(req,res)=>{
     try {
         const users= await User.find().lean().exec();
      return   res.send(users)
